@@ -1,0 +1,9 @@
+@(field: models.Field)
+
+
+<div class="block">
+    @field.getLabel@if(field.isRequired==true){*}<br>
+    @for(option <- field.getOptions) {
+        <label for="@field.getFieldId">@option.getName</label> <input type="radio" @if(field.isRequired==true){required="required"} id="@field.getFieldId"  name="@field.getFieldId" value="@option.getId"><Br>
+        }
+</div>

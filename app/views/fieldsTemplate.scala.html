@@ -1,0 +1,50 @@
+@import java.util
+@(fields: util.List[models.Field])
+    @top.render()
+    <body>
+        <div class="mytab">
+            <div class="addbutton"> <button class="btn btn-primary" onclick="location.href='createfield'" type="button">
+                <span class="glyphicon glyphicon-plus"></span> Add field</button></div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Label</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Is Active</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @if(fields.isEmpty) {
+                    <h4>No fields yet</h4>
+                }
+                @for(field <- fields) {
+                    <tr> <td>@field.getLabel</td>
+                        <td>@field.getType.toString</td>
+                        <td>
+                            <input type="checkbox" disabled="disabled" @if(field.isRequired) {
+                                checked="checked"}></td>
+                        <td>
+                            <input type="checkbox" disabled="disabled" @if(field.isActive) {
+                                checked="checked"}> </td>
+                        <td>
+                        <td>
+                            <form action="/deletefield" method="POST">
+                                <input  type="hidden" value="@field.getFieldId" id="confirm" name="id">
+                                <button class="btn btn-danger confirm" type="submit"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            <a href="/updatefield?id=@field.getFieldId" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span> Update</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </body>
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/crfield.css")">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js" data-semver="2.0.3" data-require="jquery"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="@routes.Assets.versioned("javascripts/bootbox.min.js")"></script>
+    <script src="@routes.Assets.versioned("javascripts/fieldspage.js")"></script>

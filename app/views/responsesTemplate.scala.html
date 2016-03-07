@@ -1,0 +1,53 @@
+@(responses: List[Response], fields: List[models.Field])
+@top.render()
+<body>
+    <div class="mytab">
+        @if(responses.isEmpty) {
+        <h3>No responses yet</h3>
+    }
+        <table id="responsesTable" class="table table-striped">
+            <tr>
+            @for(field <- fields) {
+                <th>@field.getLabel</th>
+            }
+            </tr>
+            @for(response <- responses) {
+                <tr>
+                    @for(field <- fields) {
+                        @for(answer <- response.getAnswers) {
+                            @if(answer.getField().getLabel.equals(field.getLabel)) {
+                                <td>
+                                    @if(answer.getValue == null && answer.getOptions.isEmpty) {
+                                        N\A
+                                    }
+                                    @if(answer.getValue != null && answer.getValue != "") {
+                                        @answer.getValue
+                                    }
+                                    @if(answer.getValue == "" && answer.getOptions.isEmpty) {
+                                        N\A
+                                    }
+                                    @if(answer.getOptions.nonEmpty) {
+                                        @for(option <- answer.getOptions) {
+                                            @option.getName.concat(" ")
+                                        }
+                                    }
+                                </td>
+
+                            }
+                        }
+                    }
+                    @for(i <- 1 to (fields.size - response.getAnswers.size)) {
+                        <td>N\A</td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+<link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/crfield.css")">
+<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity = "sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin = "anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+
+
+

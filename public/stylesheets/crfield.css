@@ -1,0 +1,96 @@
+
+#top-panel {
+    width: 100%;
+    height: 30px;
+    border-bottom: 3px solid black;
+}
+#links{
+    margin-top: 10px;
+    margin-left: 140px;
+}
+.left{
+    width: 500px;
+    margin-top: 20px;
+    margin-left: 150px;
+}
+.heig{
+    margin-top: 30px;
+}
+.options{
+    height: 200px;
+}
+.buttons{
+    margin-top: 30px;
+}
+.mytab{
+    width: 800px;
+    margin-right: 100px;
+    margin-left: 140px;
+}
+.addbutton{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.block{
+    width: 400px;
+    padding-bottom: 30px;
+    margin-left: 100px;
+}
+.form{
+    margin-top: 50px;
+}
+.singletext{
+    width: 300px;
+}
+
+#input{
+    padding-top: 30px
+}
+#add {
+    margin-bottom: 10px;
+}
+#sbtbtn{
+    margin-left: 160px;
+}
+.numberCircle {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+
+    background: #fff;
+    border: 2px solid #666;
+    color: #666;
+    text-align: center;
+
+    font: 12px Arial, sans-serif;
+}
+#logout{
+    margin-left: 50px;
+}
+.tx{
+    width: 250px;
+}
+.txr{
+    width: 250px;
+}
+.rig{
+    float: right;
+}
+.opti{
+    display: flex;
+    margin: 0 0 3px 0;
+    width: 600px;
+}
+.error{
+    font-weight: bold;
+    margin-left: 140px;
+    margin-top: 5px;
+    color:red;
+}
+.thank{
+    text-align: center;
+    margin-top: 30%;
+    font-family: 'Monotype Corsiva', cursive;
+    font-size: 50px;
+}

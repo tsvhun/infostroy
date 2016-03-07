@@ -1,0 +1,9 @@
+@(field: models.Field)
+<div class="block">
+    @field.getLabel@if(field.isRequired==true){*}
+    <select class=" @if(field.isRequired==true){required='requried'} form-control combo" name="@field.getFieldId">
+        @for(option <- field.getOptions) {
+            <option value="@option.getId">@option.getName</option>
+    }
+    </select>
+</div>

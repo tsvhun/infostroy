@@ -1,0 +1,88 @@
+@(field: models.Field)
+@import java.math.BigInteger; var i = 0;
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    @top.render()
+    <body>
+        <form id="addfield" method="post" action="@if(field!=null){/updatefield}else{/createfield}">
+            @if(field!=null){<input type="hidden" value="@field.getFieldId" name="fieldid"> }
+            <div class="left">
+                <div class="row">
+                    <p> Create/Edit Field</p>
+                    <p> Fields with * are required</p>
+                    <br>Label*:
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-6 ">
+                            <input id="label" required="required" class="form-control" type="text" name="label" value="@if(field != null) {@field.getLabel}">
+                        </div>
+                        <div class="col-xs-4 col-sm-6">
+                            <input type="checkbox" name="required" @if(field != null && field.isRequired == true){ checked='checked'}> Required
+                        </div></div>
+                    <div class="row heig">
+                        <div class="col-sm-9">
+                            <p> Type*:</p>
+                        </div>
+                        <div class="col-xs-4 col-sm-6">
+                            <select class="form-control" name="type" id="type" >
+                                <option @if(field != null && field.getType.name().equals("SINGLE_LINE_TEXT")) {
+                                    selected="selected"
+                                } value="SINGLE_LINE_TEXT">Single line text</option>
+                                <option @if(field != null && field.getType.name().equals("TEXTAREA")) {
+                                    selected="selected"
+                                } value="TEXTAREA">Textarea</option>
+                                <option @if(field != null && field.getType.name().equals("RADIO_BUTTON")) {
+                                    selected="selected"
+                                } value="RADIO_BUTTON">Radio Button</option>
+                                <option @if(field != null && field.getType.name().equals("CHECK_BOX")) {
+                                    selected="selected"
+                                } value="CHECK_BOX">Check box</option>
+                                <option @if(field != null && field.getType.name().equals("COMBO_BOX")) {
+                                    selected="selected"
+                                } value="COMBO_BOX">Combobox</option>
+                                <option @if(field != null && field.getType.name().equals("DATE")) {
+                                    selected="selected"
+                                } value="DATE">Date</option>
+                                <option @if(field != null && field.getType.name().equals("SLIDER")) {
+                                    selected="selected"
+                                } value="SLIDER">Slider</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-4 col-sm-6">
+                            <input type="checkbox" name="isactive" @if(field != null && field.isActive == true){checked='checked'}> is Active
+                        </div>
+                    </div>
+
+                    <div class="opts @if(field == null || field.getType == Type.SINGLE_LINE_TEXT || field.getType == Type.DATE || field.getType == Type.TEXTAREA || field.getType == Type.SLIDER) {
+                        hidden}">
+                        <div id="input">
+                            <button type="button" class="btn btn-primary" id="add"><span class="glyphicon glyphicon-plus"></span> Add option</button>
+                        </div>
+                        @if(field!=null){
+                        @for(option <- field.getOptions) {
+                            <div class="opti"><input class="tx form-control" required="required" id='option' type='text' name="option[@i+']'"  value="@option.getName">@if(i>0 && field.getType!=Type.COMBO_BOX && field.getType!=Type.RADIO_BUTTON || i>1){<button type='button'  class='but delete btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Remove</button>}</div>
+                        @{i=i+1}
+                        }}
+
+                    </div>
+                    <div class="row buttons">
+                        <div class="col-xs-4 col-sm-6">
+                            <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span>
+                                Save</button>
+                            <button id="canbut" class="btn btn-warning cancel" type="reset"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src='@routes.Assets.versioned("javascripts/options.js")'></script>
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/crfield.css")">
+</html>

@@ -1,0 +1,13 @@
+@(field: models.Field)
+@import java.math.BigInteger; var i = 0;
+
+<div class="block">
+    <fieldset>
+        <span>@field.getLabel<span>@if(field.isRequired == true) {*} <br>
+        @for(option <- field.getOptions) {
+            <label>
+                <input type="checkbox" @if(field.isRequired){class='opts' required} name="@field.getFieldId.toString.concat("[").concat(i.toString).concat("]")" value="@option.getId"> @option.getName <Br>
+                @{i = i + 1}
+            } </label>
+    </fieldset>
+</div>
