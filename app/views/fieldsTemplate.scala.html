@@ -15,9 +15,6 @@
                     <th></th>
                     <th></th>
                 </tr>
-                @if(fields.isEmpty) {
-                    <h4>No fields yet</h4>
-                }
                 @for(field <- fields) {
                     <tr> <td>@field.getLabel</td>
                         <td>@field.getType.toString</td>
