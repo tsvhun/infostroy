@@ -1,4 +1,8 @@
-This is your new Play application
-=================================
+Final task.
 
-This file will be packaged with your application, when using `activator dist`.
+In this application you must use postgreSQL 9.4 with port:5432,  and database name "test".
+username for postgreSQL - "postgres", password - "root". 
+
+To run application you need to write "activator run" in console.
+
+To login into admin page you have to enter localhost:9000/login and enter username = "admin", and  password = "admin".
