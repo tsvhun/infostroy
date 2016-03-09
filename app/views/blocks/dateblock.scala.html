@@ -1,6 +1,6 @@
 @(field: models.Field)
 <div class="block">
-    @field.getLabel @if(field.isRequired == true) {*}
+    @field.getLabel @if(field.isRequired == true){*}
         <input type="date" name="@field.getFieldId" @if(field.isRequired == true) {
             required='required'} class="form-control" value="">
 </div>

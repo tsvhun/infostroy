@@ -136,8 +136,16 @@ public class FieldService {
      * @return List of Field object
      */
     public List<Field> getAllFields() {
-        return fieldDao.getAll();
+        return sortListById(fieldDao.getAll());
     }
+
+    private List<Field> sortListById(List<Field> list){
+        Collections.sort(list, (c1, c2) -> c2.getFieldId() - c1.getFieldId());
+        return list;
+    }
+
+
+
 
     /**
      * Get active fields
@@ -145,7 +153,7 @@ public class FieldService {
      * @return List of Field object
      */
     public List<Field> getActiveFields() {
-        return fieldDao.getActiveFields();
+        return sortListById(fieldDao.getActiveFields());
     }
 
 
